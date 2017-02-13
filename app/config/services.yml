@@ -1,0 +1,23 @@
+services:
+    app_bundle.repository.products_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory:
+            - "@doctrine"
+            - getRepository
+        arguments:
+            - AppBundle\Entity\Product
+    app_bundle.repository.categories_repository:
+            class: Doctrine\ORM\EntityRepository
+            factory:
+                - "@doctrine"
+                - getRepository
+            arguments:
+                - AppBundle\Entity\Category
+    app_bundle.handler.products_handler:
+        class: AppBundle\Handler\ProductsHandler
+        arguments:
+            - "@app_bundle.repository.products_repository"
+    app_bundle.handler.categories_handler:
+            class: AppBundle\Handler\CategoriesHandler
+            arguments:
+                - "@app_bundle.repository.categories_repository"
